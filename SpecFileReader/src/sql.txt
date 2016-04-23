@@ -1,0 +1,95 @@
+select * from (select
+area_no  as area_no,
+area_desc as area_desc,
+t1.bran_cd as bran_cd,
+t1.bran_name2 as bran_name2,
+t1.prod_cd    as prod_cd,
+t4.prod_name as prod_name,
+t6.prod_name prod_name_one,
+lb   as lb,
+t1.type_desc as type_desc,
+case when xl=1 then t1.sale_amt1 
+     when xl=2 then  case when cntinst=0 then 0 else t1.sale_amt1/cntinst end 
+     when xl=3  then case when cntpeople=0 then 0 else t1.sale_amt1/cntpeople end 
+end sale_amt1 
+,
+case when xl=1 then t1.pt 
+     when xl=2 then  case when cntinst=0 then 0 else t1.pt/cntinst end 
+     when xl=3  then case when cntpeople=0 then 0 else t1.pt/cntpeople end 
+end pt 
+from
+ (select prod_cd,bran_cd,bran_name2,area_no,area_desc,type_desc
+ ,sum(case when bak_1 = '1' then  t1.sale_amt else 0 end ) +sum(case when bak_1 = '0' and rt='1' then  t1.sale_amt else 0 end ) sale_amt1
+ ,sum(case when bak_1 = '1' then  t1.pt else 0 end ) +sum(case when bak_1 = '0' and rt='1' then  t1.pt else 0 end ) pt
+ from( 
+ select t1.sale_amt,t1.pt,t1.prod_cd,t2.bran_cd,t2.bran_name2,area_no,area_desc,t2.type_desc
+ ,t1.bak_1,rank()over(partition by prod_cd,bran_cd order by trad_dt desc) rt
+ from odsb.DW_YXYJ_E_PROD_INST_POINT t1 
+ left join odsb.v_inst_info  t2 on t1.inst_no=t2.inst_no
+ where trad_dt between #prompt('p_begin_date')# and #prompt('p_end_date')#
+ and t2.inst_no in (select inst_no from odsb.v_inst_tree 
+start with inst_no= # promptmany('p_inst_no')# 
+connect by sup_instn_cd= prior inst_no )
+ and prod_cd in  (# promptmany('p_prod')#)
+ #prompt('p_type_no', 'string','and 1=1 ','and nvl(area_no,0)=' )# 
+
+ )t1
+  group by  prod_cd,prod_cd,bran_cd,bran_name2,area_no,area_desc,type_desc
+ )t1
+ left join (
+ select b.bran_cd,b.type_desc,count(distinct a.uaap_id) cntpeople,count(distinct b.inst_no) cntinst
+ from odsb.v_inst_info    b
+ left join  odsb.dw_cm_yxyj_user_info a on a.customer_inst_cd=b.inst_no
+ group by b.bran_cd,b.type_desc
+ ) t8 on t1.bran_cd=t8.bran_cd and t1.type_desc=t8.type_desc
+ left join odsb.DW_YXYJ_E_PROD_THREE_INFO t4 on t1.prod_cd=t4.prod_id
+ left join odsb.DW_YXYJ_E_PROD_TWO_INFO t5 on t4.prod_two=t5.prod_id
+ left join odsb.Dw_Yxyj_e_Prod_One_Info  t6 on t5.prod_one=t6.prod_id
+ left join (select 1 xl,'汇总' lb from dual 
+ union all 
+ select 2 xl,'点均' lb from dual 
+ union all select 3 xl ,'人均' lb from dual) on 1=1
+  
+union all 
+select
+area_no as area_no,
+area_desc  as area_desc,
+t1.bran_cd  as bran_cd,
+t1.bran_name2  as bran_name2,
+t1.prod_cd   as prod_cd,
+t4.prod_name  as prod_name,
+t6.prod_name prod_name_one,
+'行均' as lb,
+'' as type_desc,
+case when cntinst=0 then 0 else t1.sale_amt1/cntinst end   as sale_amt1,
+case when cntinst=0 then 0 else t1.pt/cntinst end   as pt
+from 
+(select prod_cd,bran_cd,bran_name2,area_no,area_desc
+ ,sum(case when bak_1 = '1' then  t1.sale_amt else 0 end ) +sum(case when bak_1 = '0' and rt='1' then  t1.sale_amt else 0 end ) sale_amt1
+ ,sum(case when bak_1 = '1' then  t1.pt else 0 end ) +sum(case when bak_1 = '0' and rt='1' then  t1.pt else 0 end ) pt
+ from 
+ (
+ select t1.sale_amt,t1.pt,t1.prod_cd,area_no,area_desc,t2.bran_cd,t2.bran_name2
+ ,t1.bak_1,rank()over(partition by prod_cd,bran_cd order by trad_dt desc) rt
+ from odsb.DW_YXYJ_E_PROD_INST_POINT t1 
+ left join odsb.v_inst_info  t2 on t1.inst_no=t2.inst_no
+where trad_dt between #prompt('p_begin_date')# and #prompt('p_end_date')#
+and t2.inst_no in (select inst_no from odsb.v_inst_tree 
+start with inst_no= # promptmany('p_inst_no')# 
+connect by sup_instn_cd= prior inst_no )
+and prod_cd in  (# promptmany('p_prod')#)
+#prompt('p_type_no', 'string','and 1=1 ','and nvl(area_no,0)=' )# 
+
+)t1
+ group by prod_cd,prod_cd,area_no,area_desc,bran_cd,bran_name2
+) t1
+ 
+ left join (
+ select b.bran_cd,count(distinct b.inst_no) cntinst from odsb.v_inst_info    b
+ left join  odsb.dw_cm_yxyj_user_info a on a.customer_inst_cd=b.inst_no
+ group by b.bran_cd
+ ) t8 on t1.bran_cd=t8.bran_cd
+ left join odsb.DW_YXYJ_E_PROD_THREE_INFO t4 on t1.prod_cd=t4.prod_id
+ left join odsb.DW_YXYJ_E_PROD_TWO_INFO t5 on t4.prod_two=t5.prod_id
+ left join odsb.Dw_Yxyj_e_Prod_One_Info  t6 on t5.prod_one=t6.prod_id
+) where lb in (# promptmany('p_dim3')#)

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queries>
+	<query name="查询1">
+		<source>
+			<sqlQuery name="SQL1" dataSource="sjgzdbbranch">
+				<sqlText>
+					select p1.inst_name, p1.bran_cd2 bran_cd,
+					p1.bran_name2, p3.* from dw_dim_inst_info@odsbrun2
+					p1 inner join ( select p2.out_crd_instn_cd
+					,sum(p2.ICS_JZFKS) AS ICS_JZFKS ,SUM(P2.ICS_JZKHS)
+					AS ICS_JZKHS ,SUM(P2.CRD_DIAMOND) AS CRD_DIAMOND
+					,SUM(P2.CRD_PLATINUM) AS CRD_PLATINUM
+					,SUM(P2.CRD_AUTOCAR) AS CRD_AUTOCAR ,SUM(P2.CRD_BIZ)
+					AS CRD_BIZ ,SUM(P2.CRD_OLP_PLATINUM) AS
+					CRD_OLP_PLATINUM ,SUM(P2.CRD_FINANCE_BIZ) AS
+					CRD_FINANCE_BIZ ,SUM(P2.ICS_FKS) AS ICS_FKS
+					,SUM(P2.ICS_XKS) AS ICS_XKS ,SUM(P2.IMP_PROD) AS
+					IMP_PROD ,SUM(P2.ZX_IMP_PROD) AS ZX_IMP_PROD
+					,SUM(P2.ICS_CLKHS) AS ICS_CLKHS ,SUM(P2.ICS_CLFKS)
+					AS ICS_CLFKS ,SUM(P2.BNXFE) AS BNXFE ,SUM(P2.DHL) AS
+					DHL ,SUM(P2.TZYE) AS TZYE ,SUM(P2.BLTZYE) AS BLTZYE
+					,SUM(P2.HDKHS) AS HDKHS ,SUM(P2.ACT_CRD_DIAMOND) AS
+					ACT_CRD_DIAMOND ,SUM(P2.ACT_CRD_PLATINUM) AS
+					ACT_CRD_PLATINUM ,SUM(P2.ACT_CRD_AUTOCAR) AS
+					ACT_CRD_AUTOCAR ,SUM(P2.ACT_CRD_OLP_PLATINUM) AS
+					ACT_CRD_OLP_PLATINUM ,SUM(P2.CL_CRD_FINANCE_BIZ) AS
+					CL_CRD_FINANCE_BIZ ,SUM(P2.KSNF) AS KSNF
+					,SUM(P2.ZNJ) AS ZNJ ,SUM(P2.FQSXF) AS FQSXF
+					,SUM(P2.QXSXF) AS QXSXF ,SUM(P2.LX) AS LX
+					,SUM(P2.XFHY) AS XFHY from DW_AGT_CRD_CRT_BASE_RPT
+					p2 where p2.etl_date=#prompt('p_begin_date',
+					'string')# group by p2.out_crd_instn_cd ) p3 on
+					p1.inst_no=p3.out_crd_instn_cd where (1 = CASE WHEN
+					'440000000' = #prompt('p_company', 'string')# THEN 1
+					ELSE 0 END OR (p1.inst_no = #prompt('p_company',
+					'string')# OR p1.bran_cd2 = #prompt('p_company',
+					'string')# ))
+				</sqlText>
+				<mdProjectedItems>
+					<mdProjectedItem name="INST_NAME" />
+					<mdProjectedItem name="BRAN_CD" />
+					<mdProjectedItem name="BRAN_NAME2" />
+					<mdProjectedItem name="OUT_CRD_INSTN_CD" />
+					<mdProjectedItem name="ICS_JZFKS" />
+					<mdProjectedItem name="ICS_JZKHS" />
+					<mdProjectedItem name="CRD_DIAMOND" />
+					<mdProjectedItem name="CRD_PLATINUM" />
+					<mdProjectedItem name="CRD_AUTOCAR" />
+					<mdProjectedItem name="CRD_BIZ" />
+					<mdProjectedItem name="CRD_OLP_PLATINUM" />
+					<mdProjectedItem name="CRD_FINANCE_BIZ" />
+					<mdProjectedItem name="ICS_FKS" />
+					<mdProjectedItem name="ICS_XKS" />
+					<mdProjectedItem name="IMP_PROD" />
+					<mdProjectedItem name="ZX_IMP_PROD" />
+					<mdProjectedItem name="ICS_CLKHS" />
+					<mdProjectedItem name="ICS_CLFKS" />
+					<mdProjectedItem name="BNXFE" />
+					<mdProjectedItem name="DHL" />
+					<mdProjectedItem name="TZYE" />
+					<mdProjectedItem name="BLTZYE" />
+					<mdProjectedItem name="HDKHS" />
+					<mdProjectedItem name="ACT_CRD_DIAMOND" />
+					<mdProjectedItem name="ACT_CRD_PLATINUM" />
+					<mdProjectedItem name="ACT_CRD_AUTOCAR" />
+					<mdProjectedItem name="ACT_CRD_OLP_PLATINUM" />
+					<mdProjectedItem name="CL_CRD_FINANCE_BIZ" />
+					<mdProjectedItem name="KSNF" />
+					<mdProjectedItem name="ZNJ" />
+					<mdProjectedItem name="FQSXF" />
+					<mdProjectedItem name="QXSXF" />
+					<mdProjectedItem name="LX" />
+					<mdProjectedItem name="XFHY" />
+				</mdProjectedItems>
+			</sqlQuery>
+		</source>
+		<selection autoSummary="false">
+			<dataItem name="INST_NAME">
+				<expression>[SQL1].[INST_NAME]</expression>
+			</dataItem>
+			<dataItem name="BRAN_CD">
+				<expression>[SQL1].[BRAN_CD]</expression>
+			</dataItem>
+			<dataItem name="BRAN_NAME2">
+				<expression>[SQL1].[BRAN_NAME2]</expression>
+			</dataItem>
+			<dataItem name="OUT_CRD_INSTN_CD">
+				<expression>[SQL1].[OUT_CRD_INSTN_CD]</expression>
+			</dataItem>
+			<dataItem name="ICS_JZFKS">
+				<expression>[SQL1].[ICS_JZFKS]</expression>
+			</dataItem>
+			<dataItem name="ICS_JZKHS">
+				<expression>[SQL1].[ICS_JZKHS]</expression>
+			</dataItem>
+			<dataItem name="CRD_DIAMOND">
+				<expression>[SQL1].[CRD_DIAMOND]</expression>
+			</dataItem>
+			<dataItem name="CRD_PLATINUM">
+				<expression>[SQL1].[CRD_PLATINUM]</expression>
+			</dataItem>
+			<dataItem name="CRD_AUTOCAR">
+				<expression>[SQL1].[CRD_AUTOCAR]</expression>
+			</dataItem>
+			<dataItem name="CRD_BIZ">
+				<expression>[SQL1].[CRD_BIZ]</expression>
+			</dataItem>
+			<dataItem name="CRD_OLP_PLATINUM">
+				<expression>[SQL1].[CRD_OLP_PLATINUM]</expression>
+			</dataItem>
+			<dataItem name="CRD_FINANCE_BIZ">
+				<expression>[SQL1].[CRD_FINANCE_BIZ]</expression>
+			</dataItem>
+			<dataItem name="ICS_FKS">
+				<expression>[SQL1].[ICS_FKS]</expression>
+			</dataItem>
+			<dataItem name="ICS_XKS">
+				<expression>[SQL1].[ICS_XKS]</expression>
+			</dataItem>
+			<dataItem name="IMP_PROD">
+				<expression>[SQL1].[IMP_PROD]</expression>
+			</dataItem>
+			<dataItem name="ZX_IMP_PROD">
+				<expression>[SQL1].[ZX_IMP_PROD]</expression>
+			</dataItem>
+			<dataItem name="ICS_CLKHS">
+				<expression>[SQL1].[ICS_CLKHS]</expression>
+			</dataItem>
+			<dataItem name="ICS_CLFKS">
+				<expression>[SQL1].[ICS_CLFKS]</expression>
+			</dataItem>
+			<dataItem name="BNXFE">
+				<expression>[SQL1].[BNXFE]</expression>
+			</dataItem>
+			<dataItem name="DHL">
+				<expression>[SQL1].[DHL]</expression>
+			</dataItem>
+			<dataItem name="TZYE">
+				<expression>[SQL1].[TZYE]</expression>
+			</dataItem>
+			<dataItem name="BLTZYE">
+				<expression>[SQL1].[BLTZYE]</expression>
+			</dataItem>
+			<dataItem name="HDKHS">
+				<expression>[SQL1].[HDKHS]</expression>
+			</dataItem>
+			<dataItem name="ACT_CRD_DIAMOND">
+				<expression>[SQL1].[ACT_CRD_DIAMOND]</expression>
+			</dataItem>
+			<dataItem name="ACT_CRD_PLATINUM">
+				<expression>[SQL1].[ACT_CRD_PLATINUM]</expression>
+			</dataItem>
+			<dataItem name="ACT_CRD_AUTOCAR">
+				<expression>[SQL1].[ACT_CRD_AUTOCAR]</expression>
+			</dataItem>
+			<dataItem name="ACT_CRD_OLP_PLATINUM">
+				<expression>[SQL1].[ACT_CRD_OLP_PLATINUM]</expression>
+			</dataItem>
+			<dataItem name="CL_CRD_FINANCE_BIZ">
+				<expression>[SQL1].[CL_CRD_FINANCE_BIZ]</expression>
+			</dataItem>
+			<dataItem name="KSNF">
+				<expression>[SQL1].[KSNF]</expression>
+			</dataItem>
+			<dataItem name="ZNJ">
+				<expression>[SQL1].[ZNJ]</expression>
+			</dataItem>
+			<dataItem name="FQSXF">
+				<expression>[SQL1].[FQSXF]</expression>
+			</dataItem>
+			<dataItem name="QXSXF">
+				<expression>[SQL1].[QXSXF]</expression>
+			</dataItem>
+			<dataItem name="LX">
+				<expression>[SQL1].[LX]</expression>
+			</dataItem>
+			<dataItem name="XFHY">
+				<expression>[SQL1].[XFHY]</expression>
+			</dataItem>
+		</selection>
+	</query>
+	<query name="查询2">
+		<source>
+			<sqlQuery name="SQL1" dataSource="sjgzdbbranch">
+				<sqlText>
+					select market ,max(inst_name) AS inst_name
+					,MAX(bran_name2) AS bran_name2 ,sum(ICS_JZFKS) AS
+					ICS_JZFKS ,SUM(ICS_JZKHS) AS ICS_JZKHS
+					,SUM(CRD_DIAMOND) AS CRD_DIAMOND ,SUM(CRD_PLATINUM)
+					AS CRD_PLATINUM ,SUM(CRD_AUTOCAR) AS CRD_AUTOCAR
+					,SUM(CRD_BIZ) AS CRD_BIZ ,SUM(CRD_OLP_PLATINUM) AS
+					CRD_OLP_PLATINUM ,SUM(CRD_FINANCE_BIZ) AS
+					CRD_FINANCE_BIZ ,SUM(ICS_FKS) AS ICS_FKS
+					,SUM(ICS_XKS) AS ICS_XKS ,SUM(IMP_PROD) AS IMP_PROD
+					,SUM(ZX_IMP_PROD) AS ZX_IMP_PROD ,SUM(ICS_CLKHS) AS
+					ICS_CLKHS ,SUM(ICS_CLFKS) AS ICS_CLFKS ,SUM(BNXFE)
+					AS BNXFE ,SUM(DHL) AS DHL ,SUM(TZYE) AS TZYE
+					,SUM(BLTZYE) AS BLTZYE ,SUM(HDKHS) AS HDKHS
+					,SUM(ACT_CRD_DIAMOND) AS ACT_CRD_DIAMOND
+					,SUM(ACT_CRD_PLATINUM) AS ACT_CRD_PLATINUM
+					,SUM(ACT_CRD_AUTOCAR) AS ACT_CRD_AUTOCAR
+					,SUM(ACT_CRD_OLP_PLATINUM) AS ACT_CRD_OLP_PLATINUM
+					,SUM(CL_CRD_FINANCE_BIZ) AS CL_CRD_FINANCE_BIZ
+					,SUM(KSNF) AS KSNF ,SUM(ZNJ) AS ZNJ ,SUM(FQSXF) AS
+					FQSXF ,SUM(QXSXF) AS QXSXF ,SUM(LX) AS LX ,SUM(XFHY)
+					AS XFHY from dw_dim_inst_info@odsbrun2 p1 inner join
+					DW_AGT_CRD_CRT_BASE_RPT p2 on
+					p1.inst_no=p2.OUT_CRD_INSTN_CD where
+					p2.etl_date=#prompt('p_begin_date', 'string')# and
+					(1 = CASE WHEN '440000000' = #prompt('p_company',
+					'string')# THEN 1 ELSE 0 END OR (p1.inst_no =
+					#prompt('p_company', 'string')# OR p1.bran_cd2 =
+					#prompt('p_company', 'string')# )) group by market
+				</sqlText>
+				<mdProjectedItems>
+					<mdProjectedItem name="MARKET" />
+					<mdProjectedItem name="INST_NAME" />
+					<mdProjectedItem name="BRAN_NAME2" />
+					<mdProjectedItem name="ICS_JZFKS" />
+					<mdProjectedItem name="ICS_JZKHS" />
+					<mdProjectedItem name="CRD_DIAMOND" />
+					<mdProjectedItem name="CRD_PLATINUM" />
+					<mdProjectedItem name="CRD_AUTOCAR" />
+					<mdProjectedItem name="CRD_BIZ" />
+					<mdProjectedItem name="CRD_OLP_PLATINUM" />
+					<mdProjectedItem name="CRD_FINANCE_BIZ" />
+					<mdProjectedItem name="ICS_FKS" />
+					<mdProjectedItem name="ICS_XKS" />
+					<mdProjectedItem name="IMP_PROD" />
+					<mdProjectedItem name="ZX_IMP_PROD" />
+					<mdProjectedItem name="ICS_CLKHS" />
+					<mdProjectedItem name="ICS_CLFKS" />
+					<mdProjectedItem name="BNXFE" />
+					<mdProjectedItem name="DHL" />
+					<mdProjectedItem name="TZYE" />
+					<mdProjectedItem name="BLTZYE" />
+					<mdProjectedItem name="HDKHS" />
+					<mdProjectedItem name="ACT_CRD_DIAMOND" />
+					<mdProjectedItem name="ACT_CRD_PLATINUM" />
+					<mdProjectedItem name="ACT_CRD_AUTOCAR" />
+					<mdProjectedItem name="ACT_CRD_OLP_PLATINUM" />
+					<mdProjectedItem name="CL_CRD_FINANCE_BIZ" />
+					<mdProjectedItem name="KSNF" />
+					<mdProjectedItem name="ZNJ" />
+					<mdProjectedItem name="FQSXF" />
+					<mdProjectedItem name="QXSXF" />
+					<mdProjectedItem name="LX" />
+					<mdProjectedItem name="XFHY" />
+				</mdProjectedItems>
+			</sqlQuery>
+		</source>
+		<selection autoSummary="false">
+			<dataItem name="INST_NAME">
+				<expression>[SQL1].[INST_NAME]</expression>
+			</dataItem>
+			<dataItem name="MARKET">
+				<expression>[SQL1].[MARKET]</expression>
+			</dataItem>
+			<dataItem name="BRAN_NAME2">
+				<expression>[SQL1].[BRAN_NAME2]</expression>
+			</dataItem>
+			<dataItem name="ICS_JZFKS">
+				<expression>[SQL1].[ICS_JZFKS]</expression>
+			</dataItem>
+			<dataItem name="ICS_JZKHS">
+				<expression>[SQL1].[ICS_JZKHS]</expression>
+			</dataItem>
+			<dataItem name="CRD_DIAMOND">
+				<expression>[SQL1].[CRD_DIAMOND]</expression>
+			</dataItem>
+			<dataItem name="CRD_PLATINUM">
+				<expression>[SQL1].[CRD_PLATINUM]</expression>
+			</dataItem>
+			<dataItem name="CRD_AUTOCAR">
+				<expression>[SQL1].[CRD_AUTOCAR]</expression>
+			</dataItem>
+			<dataItem name="CRD_BIZ">
+				<expression>[SQL1].[CRD_BIZ]</expression>
+			</dataItem>
+			<dataItem name="CRD_OLP_PLATINUM">
+				<expression>[SQL1].[CRD_OLP_PLATINUM]</expression>
+			</dataItem>
+			<dataItem name="CRD_FINANCE_BIZ">
+				<expression>[SQL1].[CRD_FINANCE_BIZ]</expression>
+			</dataItem>
+			<dataItem name="ICS_FKS">
+				<expression>[SQL1].[ICS_FKS]</expression>
+			</dataItem>
+			<dataItem name="ICS_XKS">
+				<expression>[SQL1].[ICS_XKS]</expression>
+			</dataItem>
+			<dataItem name="IMP_PROD">
+				<expression>[SQL1].[IMP_PROD]</expression>
+			</dataItem>
+			<dataItem name="ZX_IMP_PROD">
+				<expression>[SQL1].[ZX_IMP_PROD]</expression>
+			</dataItem>
+			<dataItem name="ICS_CLKHS">
+				<expression>[SQL1].[ICS_CLKHS]</expression>
+			</dataItem>
+			<dataItem name="ICS_CLFKS">
+				<expression>[SQL1].[ICS_CLFKS]</expression>
+			</dataItem>
+			<dataItem name="BNXFE">
+				<expression>[SQL1].[BNXFE]</expression>
+			</dataItem>
+			<dataItem name="DHL">
+				<expression>[SQL1].[DHL]</expression>
+			</dataItem>
+			<dataItem name="TZYE">
+				<expression>[SQL1].[TZYE]</expression>
+			</dataItem>
+			<dataItem name="BLTZYE">
+				<expression>[SQL1].[BLTZYE]</expression>
+			</dataItem>
+			<dataItem name="HDKHS">
+				<expression>[SQL1].[HDKHS]</expression>
+			</dataItem>
+			<dataItem name="ACT_CRD_DIAMOND">
+				<expression>[SQL1].[ACT_CRD_DIAMOND]</expression>
+			</dataItem>
+			<dataItem name="ACT_CRD_PLATINUM">
+				<expression>[SQL1].[ACT_CRD_PLATINUM]</expression>
+			</dataItem>
+			<dataItem name="ACT_CRD_AUTOCAR">
+				<expression>[SQL1].[ACT_CRD_AUTOCAR]</expression>
+			</dataItem>
+			<dataItem name="ACT_CRD_OLP_PLATINUM">
+				<expression>[SQL1].[ACT_CRD_OLP_PLATINUM]</expression>
+			</dataItem>
+			<dataItem name="CL_CRD_FINANCE_BIZ">
+				<expression>[SQL1].[CL_CRD_FINANCE_BIZ]</expression>
+			</dataItem>
+			<dataItem name="KSNF">
+				<expression>[SQL1].[KSNF]</expression>
+			</dataItem>
+			<dataItem name="ZNJ">
+				<expression>[SQL1].[ZNJ]</expression>
+			</dataItem>
+			<dataItem name="FQSXF">
+				<expression>[SQL1].[FQSXF]</expression>
+			</dataItem>
+			<dataItem name="QXSXF">
+				<expression>[SQL1].[QXSXF]</expression>
+			</dataItem>
+			<dataItem name="LX">
+				<expression>[SQL1].[LX]</expression>
+			</dataItem>
+			<dataItem name="XFHY">
+				<expression>[SQL1].[XFHY]</expression>
+			</dataItem>
+		</selection>
+	</query>
+</queries>

@@ -1,0 +1,49 @@
+<report xmlns="http://developer.cognos.com/schemas/report/4.0/"
+	expressionLocale="zh-cn">
+	<modelPath>
+		/content/package[@name='DCCMIS']/model[@name='2010-05-25T09:46:42.859Z']
+	</modelPath>
+	<layouts>
+		<layout>
+			<reportPages>
+				<page name="页面1">
+					<style>
+						<defaultStyles>
+							<defaultStyle refStyle="pg" />
+						</defaultStyles>
+					</style>
+					<pageBody>
+						<style>
+							<defaultStyles>
+								<defaultStyle refStyle="pb" />
+							</defaultStyles>
+						</style>
+						<contents />
+					</pageBody>
+				</page>
+			</reportPages>
+		</layout>
+	</layouts>
+	<classStyles>
+		<classStyle name="pd_1" label="优秀">
+			<CSS value="background-color:#009933; color:#FFFFFF;" />
+		</classStyle>
+		<classStyle name="pd_2" label="良好">
+			<CSS value="background-color:#FFFFFF; color:#009933;" />
+		</classStyle>
+		<classStyle name="pd_3" label="一般">
+			<CSS value="background-color:#FFFFFF; color:#CC9900;" />
+		</classStyle>
+		<classStyle name="pd_4" label="较差">
+			<CSS value="background-color:#FFFFFF; color:#990000;" />
+		</classStyle>
+		<classStyle name="pd_5" label="很差">
+			<CSS value="background-color:#990000; color:#FFFFFF;" />
+		</classStyle>
+	</classStyles>
+	<XMLAttributes>
+		<XMLAttribute name="RS_CreateExtendedDataItems" value="true"
+			output="no" />
+		<XMLAttribute name="listSeparator" value="," output="no" />
+	</XMLAttributes>
+</report>

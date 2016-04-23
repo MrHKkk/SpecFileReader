@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="conf"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="D:/jar/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/jar/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/jar/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="D:/jar/commons-dbcp-1.4/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/jar/dbcp/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="D:/jar/dbcp/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/jar/dbcp/commons-pool2-2.2.jar"/>
+	<classpathentry kind="lib" path="D:/jar/jaxen-1.1.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
