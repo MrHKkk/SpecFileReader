@@ -1,4 +1,4 @@
-package com.ccb.reader.model;
+package com.kd.reader.model;
 
 /**
  * DS文件头对象

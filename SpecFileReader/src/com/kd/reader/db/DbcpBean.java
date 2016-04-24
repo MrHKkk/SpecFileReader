@@ -1,4 +1,4 @@
-package com.ccb.reader.db;
+package com.kd.reader.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;

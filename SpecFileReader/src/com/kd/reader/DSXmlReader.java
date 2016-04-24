@@ -1,4 +1,4 @@
-package com.ccb.reader;
+package com.kd.reader;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,11 +32,11 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import com.ccb.reader.model.DSJobInfo;
-import com.ccb.reader.model.DSWidgetInfo;
-import com.ccb.reader.model.DSXmlHeader;
-import com.ccb.reader.util.DBUtils;
-import com.ccb.reader.util.DateUtils;
+import com.kd.reader.model.DSJobInfo;
+import com.kd.reader.model.DSWidgetInfo;
+import com.kd.reader.model.DSXmlHeader;
+import com.kd.reader.util.DBUtils;
+import com.kd.reader.util.DateUtils;
 
 @SuppressWarnings("unchecked")
 public class DSXmlReader implements SpecFileReader{

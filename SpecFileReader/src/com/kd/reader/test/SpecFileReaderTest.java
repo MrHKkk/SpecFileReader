@@ -1,11 +1,11 @@
-package com.ccb.reader.test;
+package com.kd.reader.test;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ccb.reader.CognosXmlReader;
-import com.ccb.reader.SpecFileReader;
+import com.kd.reader.CognosXmlReader;
+import com.kd.reader.SpecFileReader;
 
 public class SpecFileReaderTest {
 	

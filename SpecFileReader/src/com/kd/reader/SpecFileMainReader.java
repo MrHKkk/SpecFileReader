@@ -1,11 +1,11 @@
-package com.ccb.reader;
+package com.kd.reader;
 
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ccb.reader.db.DbcpBean;
+import com.kd.reader.db.DbcpBean;
 
 /**
  * 入口类

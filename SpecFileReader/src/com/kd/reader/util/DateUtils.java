@@ -1,4 +1,4 @@
-package com.ccb.reader.util;
+package com.kd.reader.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

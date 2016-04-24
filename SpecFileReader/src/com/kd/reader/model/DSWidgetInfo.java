@@ -1,4 +1,4 @@
-package com.ccb.reader.model;
+package com.kd.reader.model;
 
 import java.util.List;
 

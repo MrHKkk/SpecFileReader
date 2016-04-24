@@ -1,4 +1,4 @@
-package com.ccb.reader.test;
+package com.kd.reader.test;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;

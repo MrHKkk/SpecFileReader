@@ -1,4 +1,4 @@
-package com.ccb.reader;
+package com.kd.reader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.util.List;
 
-import com.ccb.reader.model.CognosXmlObj;
-import com.ccb.reader.util.DBUtils;
+import com.kd.reader.model.CognosXmlObj;
+import com.kd.reader.util.DBUtils;
 
 public class Test {
 

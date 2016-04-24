@@ -1,10 +1,10 @@
-package com.ccb.reader.test;
+package com.kd.reader.test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ccb.reader.model.CognosXmlObj;
-import com.ccb.reader.model.SqlQueryObj;
+import com.kd.reader.model.CognosXmlObj;
+import com.kd.reader.model.SqlQueryObj;
 
 public class ModelTest {
 

@@ -1,4 +1,4 @@
-package com.ccb.reader;
+package com.kd.reader;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -40,12 +40,12 @@ import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
-import com.ccb.reader.db.DbcpBean;
-import com.ccb.reader.model.CognosXmlObj;
-import com.ccb.reader.model.SqlQueryObj;
-import com.ccb.reader.util.DBUtils;
-import com.ccb.reader.util.DateUtils;
-import com.ccb.reader.util.FileUtils;
+import com.kd.reader.db.DbcpBean;
+import com.kd.reader.model.CognosXmlObj;
+import com.kd.reader.model.SqlQueryObj;
+import com.kd.reader.util.DBUtils;
+import com.kd.reader.util.DateUtils;
+import com.kd.reader.util.FileUtils;
 
 @SuppressWarnings("unchecked")
 public class CognosXmlReader implements SpecFileReader {

@@ -1,4 +1,4 @@
-package com.ccb.reader;
+package com.kd.reader;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
-import com.ccb.reader.db.DbcpBean;
-import com.ccb.reader.model.DSJobInfo;
-import com.ccb.reader.model.DSWidgetInfo;
-import com.ccb.reader.model.DSXmlHeader;
-import com.ccb.reader.util.DBUtils;
-import com.ccb.reader.util.DateUtils;
+import com.kd.reader.db.DbcpBean;
+import com.kd.reader.model.DSJobInfo;
+import com.kd.reader.model.DSWidgetInfo;
+import com.kd.reader.model.DSXmlHeader;
+import com.kd.reader.util.DBUtils;
+import com.kd.reader.util.DateUtils;
 
 public class DSObjPersistence {
 
